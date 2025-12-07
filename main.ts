@@ -1,116 +1,92 @@
-input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
-    if (positionszeiger == 8) {
-        positionszeiger = 0
-    } else {
-        positionszeiger = positionszeiger + 1
-    }
+/**
+ * Positionszeiger
+ */
+// Button A: vorwärts
+input.onButtonPressed(Button.A, function () {
+    positionszeiger = (positionszeiger + 1) % ANZAHL_POSITIONEN
     aendereLEDs()
 })
+// Anzeige-Hilfsfunktion
 function aendereLEDs () {
-    if (positionszeiger == 0) {
-        basic.showLeds(`
-            . # # # .
-            # . # . #
-            # # # # #
-            # # # # #
-            # . # . #
-            `)
-    } else {
-        if (positionszeiger == 1) {
-            basic.showLeds(`
-                # # # . .
-                . # . # .
-                # # # # .
-                # # # # .
-                . # . # .
-                `)
-        } else {
-            if (positionszeiger == 2) {
-                basic.showLeds(`
-                    # # . . .
-                    # . # . .
-                    # # # . .
-                    # # # . .
-                    # . # . .
-                    `)
-            } else {
-                if (positionszeiger == 3) {
-                    basic.showLeds(`
-                        # . . . .
-                        . # . . .
-                        # # . . .
-                        # # . . .
-                        . # . . .
-                        `)
-                } else {
-                    if (positionszeiger == 4) {
-                        basic.showLeds(`
-                            . . . . .
-                            # . . . .
-                            # . . . .
-                            # . . . .
-                            # . . . .
-                            `)
-                    } else {
-                        if (positionszeiger == 5) {
-                            basic.showLeds(`
-                                . . . . .
-                                . . . . #
-                                . . . . #
-                                . . . . #
-                                . . . . #
-                                `)
-                        } else {
-                            if (positionszeiger == 6) {
-                                basic.showLeds(`
-                                    . . . . #
-                                    . . . # .
-                                    . . . # #
-                                    . . . # #
-                                    . . . # .
-                                    `)
-                            } else {
-                                if (positionszeiger == 7) {
-                                    basic.showLeds(`
-                                        . . . # #
-                                        . . # . #
-                                        . . # # #
-                                        . . # # #
-                                        . . # . #
-                                        `)
-                                } else {
-                                    if (positionszeiger == 8) {
-                                        basic.showLeds(`
-                                            . . # # #
-                                            . # . # .
-                                            . # # # #
-                                            . # # # #
-                                            . # . # .
-                                            `)
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+    basic.clearScreen()
+    // Image anzeigen (Frame 0)
+    muster[positionszeiger].showImage(0)
 }
-input.onButtonEvent(Button.B, input.buttonEventClick(), function () {
-    if (positionszeiger == 0) {
-        positionszeiger = 8
-    } else {
-        positionszeiger = positionszeiger - 1
-    }
+// Button B: rückwärts
+input.onButtonPressed(Button.B, function () {
+    positionszeiger = (positionszeiger - 1 + ANZAHL_POSITIONEN) % ANZAHL_POSITIONEN
     aendereLEDs()
 })
 let positionszeiger = 0
-positionszeiger = 0
-basic.showLeds(`
+let muster: Image[] = []
+let ANZAHL_POSITIONEN = 0
+// Anzahl der Positionen
+ANZAHL_POSITIONEN = 9
+// LED-Muster als Image-Objekte (Array)
+muster = [
+images.createImage(`
     . # # # .
     # . # . #
     # # # # #
     # # # # #
     # . # . #
+    `),
+images.createImage(`
+    # # # . .
+    . # . # .
+    # # # # .
+    # # # # .
+    . # . # .
+    `),
+images.createImage(`
+    # # . . .
+    # . # . .
+    # # # . .
+    # # # . .
+    # . # . .
+    `),
+images.createImage(`
+    # . . . .
+    . # . . .
+    # # . . .
+    # # . . .
+    . # . . .
+    `),
+images.createImage(`
+    . . . . .
+    # . . . .
+    # . . . .
+    # . . . .
+    # . . . .
+    `),
+images.createImage(`
+    . . . . .
+    . . . . #
+    . . . . #
+    . . . . #
+    . . . . #
+    `),
+images.createImage(`
+    . . . . #
+    . . . # .
+    . . . # #
+    . . . # #
+    . . . # .
+    `),
+images.createImage(`
+    . . . # #
+    . . # . #
+    . . # # #
+    . . # # #
+    . . # . #
+    `),
+images.createImage(`
+    . . # # #
+    . # . # .
+    . # # # #
+    . # # # #
+    . # . # .
     `)
+]
+// Startanzeige
+aendereLEDs()

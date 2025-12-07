@@ -1,14 +1,18 @@
 {
-    "name": "GeistBewegung",
+    "name": "GeistBewegungArray",
     "description": "",
     "dependencies": {
         "core": "*",
-        "v3": "*"
+        "v3": "*",
+        "calliope-oled96": "github:mkleinsb/pxt-calliope-oled96#df2eebfa395b5b24f9910e499809a573d59bfa7d",
+        "pxt-faces": "github:calliope-edu/pxt-faces#8aa2a4defa37dcda4f1aabed461114d7344816e6",
+        "audio-recording": "*"
     },
     "files": [
         "main.blocks",
         "main.ts",
-        "README.md"
+        "README.md",
+        "main.py"
     ],
     "testFiles": [
         "test.ts"
@@ -20,5 +24,5 @@
     "supportedTargets": [
         "calliopemini"
     ],
-    "preferredEditor": "blocksprj"
+    "preferredEditor": "tsprj"
 }
